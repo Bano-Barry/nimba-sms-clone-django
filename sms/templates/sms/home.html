@@ -1,0 +1,15 @@
+{% extends 'sms/base_ui.html' %}
+<!-- titre de la page home ou d'acceuil -->
+{% block title %}Home{% endblock title %}
+<!-- contenu de la page home -->
+{%block content %}
+
+<main class="container">
+  <h1 class="lead">SmSez-vous comme des Pros ...</h1>
+  <button class="btn btn-outline-primary">Commencez dès maintenant</button>
+  <button class="btn btn-outline-info">
+    <a href="{% url 'tarifs' %}">Voir nos tarifs</a>
+  </button>
+</main>
+
+{% endblock content %}

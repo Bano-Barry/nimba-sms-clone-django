@@ -1,0 +1,24 @@
+{% extends 'sms/base_ui.html' %}
+<!-- titre de la page home ou d'acceuil -->
+{% block title %}Tarifs{% endblock title %}
+
+<!-- contenu de la page home -->
+{% block content %}
+<main class="container text-center" style="padding: 0">
+  <h1 class="lead">Nos tarifs ...</h1>
+  <div class="row">
+    {% for tarif in tarifs %}
+    <div class="col-3">
+      <div class="card mr-3">
+        <div class="card-body">
+          <h5 class="card-title text-primary">Pack SMS {{ tarif.sms_pack }}</h5>
+          <p class="card-text">Prix : {{ tarif.price }} GNF</p>
+          <p class="card-text">Quantité min : {{ tarif.min_quantity }}</p>
+          <p class="card-text">Quantité max : {{ tarif.max_quantity }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock content %}
