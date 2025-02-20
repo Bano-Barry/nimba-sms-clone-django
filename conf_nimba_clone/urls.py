@@ -5,5 +5,6 @@ import sms
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('sms.urls'))
+    path('', include('sms.urls')),
+    path('authentication/', include('authentication.urls'))
 ]
