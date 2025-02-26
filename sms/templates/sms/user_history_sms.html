@@ -1,0 +1,50 @@
+{% extends 'sms/base_ui.html' %}
+<!-- title -->
+{% block title %}Historique des SMS{% endblock title %}
+<!-- content -->
+{% block content %}
+<main class="container">
+  <div class="row">
+    <h1 class="lead col-12">Historique des SMS envoyés</h1>
+  </div>
+
+  <!-- Affichage des SMS envoyés -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Destinataire</th>
+        <th>Message</th>
+        <th>Date d'envoi</th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for sms in sent_sms_list %}
+      <tr>
+        <td>{{ sms.recipient }}</td>
+        <td>{{ sms.message }}</td>
+        <td>{{ sms.sent_at }}</td>
+        <td>{{ sms.get_status_display }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4" class="text-center">Aucun SMS envoyé.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Affichage des SMS restants -->
+  <h2 class="mt-4">Votre solde de SMS</h2>
+  <ul class="list-group">
+    {% for pack in user_packs %}
+    <li class="list-group-item">
+      Pack : <strong>{{ pack.sms_pack.name }}</strong> - SMS restants :
+      <strong>{{ pack.remaining_sms }}</strong>
+    </li>
+    {% empty %}
+    <li class="list-group-item text-center">Aucun pack actif.</li>
+    {% endfor %}
+  </ul>
+</main>
+{% endblock content %}

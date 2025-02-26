@@ -1,0 +1,17 @@
+{% extends 'sms/base_ui.html' %}
+<!-- titre de la page home ou d'acceuil -->
+{% block title %}Sent SMS{% endblock title %}
+<!-- contenu de la page home -->
+{%block content %}
+
+<main class="container">
+  <div class="row">
+    <h1 class="lead col-4">Envoyez un sms...</h1>
+    <form method="post" class="col-8">
+      {% csrf_token %} {{ form.as_p }}
+      <button class="btn btn-primary w-100" type="submit">Envoyer</button>
+    </form>
+  </div>
+</main>
+
+{% endblock content %}
