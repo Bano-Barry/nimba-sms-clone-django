@@ -8,24 +8,11 @@
   <div class="container d-flex justify-content-center align-items-center">
     <div class="card p-4 shadow-lg" style="width: 400px">
       <h2 class="text-center mb-4">Connexion</h2>
-      <form>
-        <div class="mb-3">
-          <label class="form-label">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            placeholder="Entrez votre email"
-          />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Mot de passe</label>
-          <input
-            type="password"
-            class="form-control"
-            placeholder="Entrez votre mot de passe"
-          />
-        </div>
-        <button class="btn btn-primary w-100">Se connecter</button>
+      <form method="post">
+        {% csrf_token %} {{ form.as_p }}
+        <button class="btn btn-primary w-100" type="submit">
+          Se connecter
+        </button>
       </form>
       <p class="text-center mt-3">
         Pas encore inscrit ? <a href="{% url 'register' %}">Créer un compte</a>

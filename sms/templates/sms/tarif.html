@@ -16,6 +16,21 @@
           <p class="card-text">Quantité min : {{ tarif.min_quantity }}</p>
           <p class="card-text">Quantité max : {{ tarif.max_quantity }}</p>
         </div>
+        <div class="card-footer">
+          {% if user.is_authenticated %}
+          <!-- Si l'utilisateur est connecté, il peut souscrire -->
+          <a
+            href="{% url 'subscribe_sms_pack' pack_id=tarif.id %}"
+            class="btn btn-outline-primary"
+            >Souscrire</a
+          >
+          {% else %}
+          <!-- Si l'utilisateur n'est pas connecté, le bouton mène à la page de connexion -->
+          <a href="{% url 'login' %}" class="btn btn-outline-primary"
+            >Se connecter pour souscrire</a
+          >
+          {% endif %}
+        </div>
       </div>
     </div>
     {% endfor %}

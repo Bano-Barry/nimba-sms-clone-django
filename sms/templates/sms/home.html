@@ -6,10 +6,24 @@
 
 <main class="container">
   <h1 class="lead">SmSez-vous comme des Pros ...</h1>
-  <button class="btn btn-outline-primary">Commencez dès maintenant</button>
-  <button class="btn btn-outline-info">
-    <a href="{% url 'tarifs' %}">Voir nos tarifs</a>
-  </button>
+  {% if not request.user.is_authenticated %}
+  <a href="{% url 'login' %}" class="btn btn-outline-primary"
+    >Commencez dès maintenant</a
+  >
+  {% else %}
+  <a href="{% url 'user_sms_pack' %}" class="btn btn-outline-primary"
+    >Consulter son pack</a
+  >
+  <a class="btn btn-outline-primary" href="{% url 'tarifs' %}"
+    >Envoyer un sms</a
+  >
+  <a class="btn btn-outline-primary" href="{% url 'tarifs' %}"
+    >Historique des sms</a
+  >
+  {% endif %}
+  <a class="btn btn-outline-primary" href="{% url 'tarifs' %}"
+    >Voir nos tarifs</a
+  >
 </main>
 
 {% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'sms/base_ui.html' %}
+<!-- title -->
+{% block title %}Mon Pack SMS{% endblock %}
+<!-- content -->
+{%block content %}
+<main class="container">
+  <h1 class="lead text-center">Votre Pack SMS</h1>
+
+  {% if user_packs %} {% for user_pack in user_packs %}
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Pack SMS : {{ user_pack.sms_pack.name }}</h5>
+      <p class="card-text">Quantité de SMS : {{ user_pack.remaining_sms }}</p>
+    </div>
+  </div>
+  {% endfor %} {% else %}
+  <div class="alert alert-warning">
+    Vous n'avez pas encore souscrit à un pack SMS.
+  </div>
+  {% endif %}
+</main>
+{% endblock %}

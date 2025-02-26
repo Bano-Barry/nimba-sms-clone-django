@@ -1,2 +1,4 @@
 ./env
 ./node_modules
+./conf_nimba_clone/__pycache__
+./sms/__pycache__
