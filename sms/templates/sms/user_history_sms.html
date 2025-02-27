@@ -5,7 +5,7 @@
 {% block content %}
 <main class="container">
   <div class="row">
-    <h1 class="lead col-12">Historique des SMS envoyés</h1>
+    <h1 class="lead col-12 text-primary">Historique des SMS envoyés</h1>
   </div>
 
   <!-- Affichage des SMS envoyés -->
@@ -28,14 +28,31 @@
       </tr>
       {% empty %}
       <tr>
-        <td colspan="4" class="text-center">Aucun SMS envoyé.</td>
+        <td colspan="4" class="text-center text-primary">Aucun SMS envoyé.</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
+  <!-- SMS reçus -->
+  <div class="row mt-4">
+    <h3 class="lead text-primary">SMS reçus</h3>
+    <ul>
+      {% for sms in received_sms %}
+      <li>
+        <strong>De : </strong>{{ sms.user.username }}<br />
+        <strong>Message : </strong>{{ sms.message }}<br />
+        <strong>Date de réception : </strong>{{ sms.sent_at }}<br />
+        <strong>Status : </strong>{{ sms.status }}
+      </li>
+      {% empty %}
+      <li>Aucun SMS reçu pour le moment.</li>
+      {% endfor %}
+    </ul>
+    <a href="{% url 'user_sent_sms' %}" class="btn btn-primary">Repondre</a>
+  </div>
 
   <!-- Affichage des SMS restants -->
-  <h2 class="mt-4">Votre solde de SMS</h2>
+  <h2 class="mt-4 text-primary lead">Votre solde de SMS</h2>
   <ul class="list-group">
     {% for pack in user_packs %}
     <li class="list-group-item">

@@ -31,7 +31,7 @@ class UserSmsPack(models.Model):
 # Modèle représentant un SMS envoyé par un utilisateur
 class SentSms(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Utilisateur qui a envoyé le SMS
-    recipient = models.CharField(max_length=20)  # Numéro de téléphone du destinataire
+    recipient = models.CharField(max_length=20)  # destinataire
     message = models.TextField()  # Contenu du message envoyé
     sent_at = models.DateTimeField(auto_now_add=True)  # Date et heure d'envoi du SMS
     status = models.CharField(max_length=10, choices=[('sent', 'Sent'), ('failed', 'Failed')])  # Statut d'envoi du SMS (envoyé ou échoué)

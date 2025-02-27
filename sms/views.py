@@ -74,7 +74,7 @@ def user_sent_sms(request):
                 messages.error(request, "Vous n'avez plus de SMS restants !")
                 return redirect('user_sent_sms')  # Rediriger l'utilisateur en cas d'erreur
             
-            return redirect('user_sent_sms')  # Recharger la page après soumission
+            return redirect('history_sms')  # Recharger la page après soumission
     else:
         form = SentSMSForm()
 
@@ -86,8 +86,11 @@ def user_sms_history(request):
     """Affiche l'historique des SMS envoyés et le nombre de SMS restants."""
     sent_sms_list = SentSms.objects.filter(user=request.user).order_by('-sent_at')  # Récupérer les SMS envoyés
     user_packs = UserSmsPack.objects.filter(user=request.user)  # Récupérer les packs actifs
+    # Récupérer les SMS reçus par l'utilisateur
+    received_sms = SentSms.objects.filter(recipient=request.user.username)
 
     return render(request, 'sms/user_history_sms.html', {
         'sent_sms_list': sent_sms_list,
-        'user_packs': user_packs
+        'user_packs': user_packs, 
+        'received_sms': received_sms
     })
